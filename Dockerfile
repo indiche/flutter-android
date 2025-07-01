@@ -2,17 +2,13 @@ FROM debian:12-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install -y dpkg \
-    && export ARCHITECTURE=$(dpkg --print-architecture) \
-    && export JAVA_HOME="/usr/lib/jvm/temurin-21-jdk-${ARCHITECTURE}" \
-    && echo "JAVA_HOME=$JAVA_HOME" >> /etc/environment
-
 # Environment variables
 ENV FLUTTER_VERSION=3.32.5
 ENV FLUTTER_HOME=/opt/flutter
 ENV ANDROID_SDK_ROOT=/opt/android-sdk
 ENV ANDROID_HOME=$ANDROID_SDK_ROOT
-ENV PATH=$PATH:$JAVA_HOME/bin:$FLUTTER_HOME/bin:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools
+ENV JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64
+ENV PATH=$JAVA_HOME/bin:$PATH:$FLUTTER_HOME/bin:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools
 ENV BUNDLE_SILENCE_ROOT_WARNING=1
 
 # Install system dependencies and Java JDK

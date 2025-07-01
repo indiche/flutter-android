@@ -13,7 +13,7 @@ A Docker image for Flutter Android development and CI/CD pipelines. This image i
   - CMake 3.22.1
 - **Java JDK**: Temurin OpenJDK 21
 - **Ruby & Fastlane**: For automated deployment
-- **Multi-Architecture**: Supports both AMD64 and ARM64
+- **Architecture**: AMD64 (x86_64)
 - **Security**: Runs as non-root user
 - **Optimized**: Pre-cached dependencies and minimal image size
 
@@ -65,8 +65,8 @@ docker run --rm \
 # Build for current platform
 docker build -t flutter-android .
 
-# Build for multiple platforms
-docker buildx build --platform linux/amd64,linux/arm64 -t flutter-android .
+# Build for AMD64 platform
+docker buildx build --platform linux/amd64 -t flutter-android .
 ```
 
 ### Customization
@@ -102,7 +102,7 @@ This repository includes an automated build pipeline that:
    - Pull requests
 
 2. **Builds**:
-   - Multi-architecture images (AMD64 + ARM64)
+   - AMD64 images
    - Optimized with build caching
    - Proper semantic versioning
 
