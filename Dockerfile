@@ -8,7 +8,7 @@ ENV FLUTTER_HOME=/opt/flutter
 ENV ANDROID_SDK_ROOT=/opt/android-sdk
 ENV ANDROID_HOME=$ANDROID_SDK_ROOT
 ENV JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64
-ENV PATH=$JAVA_HOME/bin:$PATH:$FLUTTER_HOME/bin:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools
+ENV PATH=$HOME/.pub-cache/bin:$JAVA_HOME/bin:$PATH:$FLUTTER_HOME/bin:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools
 ENV BUNDLE_SILENCE_ROOT_WARNING=1
 
 # Install system dependencies and Java JDK
@@ -86,6 +86,8 @@ RUN flutter --disable-analytics \
     && flutter precache --android --no-web --no-linux --no-windows --no-macos --no-fuchsia \
     && flutter doctor \
     && flutter pub cache repair
+
+RUN flutter pub global activate melos 7.0.0-dev.9
 
 WORKDIR /workspace
 
